@@ -32,4 +32,41 @@ class StudentController extends Controller
     ]);
 
     }
+
+    public function edit($id){
+        $student = Student::find($id);
+        return response()->json([
+            'status'=> 200,
+            'students'=> $student
+        ]);
+    }
+
+    public function update(Request $request,$id){
+        $student = Student::find($id);
+        
+            if($student)
+            {
+
+                $student->name = $request->input('name');
+                $student->course = $request->input('course');
+                $student->email = $request->input('email');
+                $student->phone = $request->input('phone');
+                $student->update();
+
+                return response()->json([
+                    'status'=> 200,
+                    'message'=>'Student Updated Successfully',
+                ]);
+            }
+            else
+            {
+                return response()->json([
+                    'status'=> 404,
+                    'message' => 'No Student ID Found',
+                ]);
+            }
+
+    }
+
+
 }
