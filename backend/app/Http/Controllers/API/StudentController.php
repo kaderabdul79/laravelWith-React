@@ -17,7 +17,7 @@ class StudentController extends Controller
     $student->phone = $request->input('phone'); 
 
     $student->save();
-
+        // return  $student;
     return response()->json([
         'status' => 200,
         'message' => 'Student Added Successfully'
