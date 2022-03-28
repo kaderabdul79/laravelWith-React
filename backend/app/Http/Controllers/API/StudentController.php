@@ -8,6 +8,14 @@ use App\Models\Student;
 
 class StudentController extends Controller
 {
+    public function index(){
+        $student = Student::all();
+        return response()->json([
+            'status'=> 200,
+            'students'=> $student
+        ]);
+    }
+
     public function store(Request $request){
 
     $student = new Student;
